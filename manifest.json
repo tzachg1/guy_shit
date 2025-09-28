@@ -1,0 +1,27 @@
+{
+    "name": "G.A Strategy & Business Growth",
+    "short_name": "G.A Strategy",
+    "description": "ליווי אסטרטגי לבעלי עסקים – מהרעיון ועד לביצוע",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a1426",
+    "theme_color": "#0a1426",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "logo.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["business", "productivity"],
+    "lang": "he",
+    "dir": "rtl"
+}
