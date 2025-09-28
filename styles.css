@@ -1652,6 +1652,12 @@ section {
     .nav-menu.active .nav-item:nth-child(3) { transition-delay: 0.2s; }
     .nav-menu.active .nav-item:nth-child(4) { transition-delay: 0.25s; }
 
+    /* Mobile menu order - reverse the order for mobile only */
+    .nav-menu .nav-item:nth-child(1) { order: 4; } /* בית -> last */
+    .nav-menu .nav-item:nth-child(2) { order: 3; } /* אודות -> third */
+    .nav-menu .nav-item:nth-child(3) { order: 2; } /* שירותים -> second */
+    .nav-menu .nav-item:nth-child(4) { order: 1; } /* צור קשר -> first */
+
     .nav-link {
         display: flex !important;
         align-items: center !important;
