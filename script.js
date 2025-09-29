@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         safeInitialize('Scroll Effects', initializeScrollEffects);
         safeInitialize('Parallax', initializeParallax);
         safeInitialize('Mobile Optimizations', initializeMobileOptimizations);
+        safeInitialize('Accessibility Menu', initializeAccessibilityMenu);
         
         updateNavigationAccessibility();
         
@@ -150,7 +151,7 @@ function initializeNavigation() {
         lastScrollY = currentScrollY;
     });
 
-    const sections = document.querySelectorAll('section[id]');
+    const sections = document.querySelectorAll('section[id], header[id]');
     
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY + 100;
@@ -1063,6 +1064,450 @@ function monitorPerformance() {
 }
 
 monitorPerformance();
+
+function initializeAccessibilityMenu() {
+    const accessibilityToggle = document.getElementById('accessibility-toggle');
+    const accessibilityMenu = document.getElementById('accessibility-menu');
+    const accessibilityClose = document.getElementById('accessibility-close');
+    const readingGuideLine = document.getElementById('reading-guide-line');
+    
+    if (!accessibilityToggle || !accessibilityMenu) return;
+    
+    loadAccessibilityPreferences();
+    
+    initializeDraggableAccessibilityButton(accessibilityToggle);
+    
+    accessibilityToggle.addEventListener('click', () => {
+        const isOpen = accessibilityMenu.classList.contains('active');
+        if (isOpen) {
+            closeAccessibilityMenu();
+        } else {
+            openAccessibilityMenu();
+        }
+    });
+    
+    accessibilityClose?.addEventListener('click', closeAccessibilityMenu);
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && accessibilityMenu.classList.contains('active')) {
+            closeAccessibilityMenu();
+        }
+    });
+    
+    document.addEventListener('click', (e) => {
+        if (!accessibilityMenu.contains(e.target) && !accessibilityToggle.contains(e.target)) {
+            closeAccessibilityMenu();
+        }
+    });
+    
+    document.getElementById('font-decrease')?.addEventListener('click', () => {
+        adjustFontSize('decrease');
+    });
+    
+    document.getElementById('font-reset')?.addEventListener('click', () => {
+        adjustFontSize('reset');
+    });
+    
+    document.getElementById('font-increase')?.addEventListener('click', () => {
+        adjustFontSize('increase');
+    });
+    
+    document.getElementById('contrast-normal')?.addEventListener('click', () => {
+        setContrast('normal');
+    });
+    
+    document.getElementById('contrast-high')?.addEventListener('click', () => {
+        setContrast('high');
+    });
+    
+    document.getElementById('contrast-invert')?.addEventListener('click', () => {
+        setContrast('invert');
+    });
+    
+    document.getElementById('keyboard-nav')?.addEventListener('click', () => {
+        toggleKeyboardNavigation();
+    });
+    
+    document.getElementById('links-highlight')?.addEventListener('click', () => {
+        toggleLinksHighlight();
+    });
+    
+    document.getElementById('reading-guide')?.addEventListener('click', () => {
+        toggleReadingGuide();
+    });
+    
+    document.getElementById('animations-on')?.addEventListener('click', () => {
+        setAnimations(true);
+    });
+    
+    document.getElementById('animations-off')?.addEventListener('click', () => {
+        setAnimations(false);
+    });
+    
+    document.getElementById('reset-all')?.addEventListener('click', () => {
+        resetAllAccessibilitySettings();
+    });
+    
+    if (readingGuideLine) {
+        document.addEventListener('mousemove', (e) => {
+            if (readingGuideLine.classList.contains('active')) {
+                readingGuideLine.style.top = e.clientY + 'px';
+            }
+        });
+    }
+}
+
+function openAccessibilityMenu() {
+    const accessibilityMenu = document.getElementById('accessibility-menu');
+    const accessibilityToggle = document.getElementById('accessibility-toggle');
+    
+    accessibilityMenu.classList.add('active');
+    accessibilityMenu.setAttribute('aria-hidden', 'false');
+    accessibilityToggle.setAttribute('aria-expanded', 'true');
+    
+    const firstButton = accessibilityMenu.querySelector('.accessibility-btn');
+    if (firstButton) {
+        setTimeout(() => firstButton.focus(), 100);
+    }
+    
+    trackEvent('accessibility_menu_opened');
+}
+
+function closeAccessibilityMenu() {
+    const accessibilityMenu = document.getElementById('accessibility-menu');
+    const accessibilityToggle = document.getElementById('accessibility-toggle');
+    
+    accessibilityMenu.classList.remove('active');
+    accessibilityMenu.setAttribute('aria-hidden', 'true');
+    accessibilityToggle.setAttribute('aria-expanded', 'false');
+    
+    trackEvent('accessibility_menu_closed');
+}
+
+function adjustFontSize(action) {
+    const body = document.body;
+    const fontSizeClasses = ['font-large', 'font-larger', 'font-largest'];
+    
+    const currentState = {
+        isLarge: body.classList.contains('font-large'),
+        isLarger: body.classList.contains('font-larger'),
+        isLargest: body.classList.contains('font-largest')
+    };
+    
+    fontSizeClasses.forEach(cls => body.classList.remove(cls));
+    
+    let newSize = 'normal';
+    
+    switch (action) {
+        case 'increase':
+            if (currentState.isLargest) {
+                body.classList.add('font-largest');
+                newSize = 'largest';
+            } else if (currentState.isLarger) {
+                body.classList.add('font-largest');
+                newSize = 'largest';
+            } else if (currentState.isLarge) {
+                body.classList.add('font-larger');
+                newSize = 'larger';
+            } else {
+                body.classList.add('font-large');
+                newSize = 'large';
+            }
+            break;
+            
+        case 'decrease':
+            if (currentState.isLarge) {
+                newSize = 'normal';
+            } else if (currentState.isLarger) {
+                body.classList.add('font-large');
+                newSize = 'large';
+            } else if (currentState.isLargest) {
+                body.classList.add('font-larger');
+                newSize = 'larger';
+            } else {
+                newSize = 'normal';
+            }
+            break;
+            
+        case 'reset':
+            newSize = 'normal';
+            break;
+    }
+    
+    updateAccessibilityButtonStates();
+    saveAccessibilityPreference('fontSize', newSize);
+    trackEvent('accessibility_font_size_changed', { size: newSize });
+}
+
+function setContrast(mode) {
+    const body = document.body;
+    
+    body.classList.remove('high-contrast', 'invert-colors');
+    
+    switch (mode) {
+        case 'high':
+            body.classList.add('high-contrast');
+            break;
+        case 'invert':
+            body.classList.add('invert-colors');
+            break;
+        case 'normal':
+        default:
+            break;
+    }
+    
+    updateAccessibilityButtonStates();
+    saveAccessibilityPreference('contrast', mode);
+    trackEvent('accessibility_contrast_changed', { mode });
+}
+
+function toggleKeyboardNavigation() {
+    const body = document.body;
+    const isActive = body.classList.toggle('keyboard-navigation');
+    
+    updateAccessibilityButtonStates();
+    saveAccessibilityPreference('keyboardNavigation', isActive);
+    trackEvent('accessibility_keyboard_navigation_toggled', { active: isActive });
+}
+
+function toggleLinksHighlight() {
+    const body = document.body;
+    const isActive = body.classList.toggle('links-highlight');
+    
+    updateAccessibilityButtonStates();
+    saveAccessibilityPreference('linksHighlight', isActive);
+    trackEvent('accessibility_links_highlight_toggled', { active: isActive });
+}
+
+function toggleReadingGuide() {
+    const readingGuideLine = document.getElementById('reading-guide-line');
+    const isActive = readingGuideLine.classList.toggle('active');
+    
+    updateAccessibilityButtonStates();
+    saveAccessibilityPreference('readingGuide', isActive);
+    trackEvent('accessibility_reading_guide_toggled', { active: isActive });
+}
+
+function setAnimations(enabled) {
+    const body = document.body;
+    
+    if (enabled) {
+        body.classList.remove('no-animations');
+    } else {
+        body.classList.add('no-animations');
+    }
+    
+    updateAccessibilityButtonStates();
+    saveAccessibilityPreference('animations', enabled);
+    trackEvent('accessibility_animations_toggled', { enabled });
+}
+
+function updateAccessibilityButtonStates() {
+    const body = document.body;
+    
+    document.querySelectorAll('#font-decrease, #font-reset, #font-increase').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    if (body.classList.contains('font-largest')) {
+        document.getElementById('font-increase')?.classList.add('active');
+    } else if (body.classList.contains('font-larger')) {
+        document.getElementById('font-increase')?.classList.add('active');
+    } else if (body.classList.contains('font-large')) {
+        document.getElementById('font-increase')?.classList.add('active');
+    } else {
+        document.getElementById('font-reset')?.classList.add('active');
+    }
+    
+    document.querySelectorAll('#contrast-normal, #contrast-high, #contrast-invert').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    if (body.classList.contains('high-contrast')) {
+        document.getElementById('contrast-high')?.classList.add('active');
+    } else if (body.classList.contains('invert-colors')) {
+        document.getElementById('contrast-invert')?.classList.add('active');
+    } else {
+        document.getElementById('contrast-normal')?.classList.add('active');
+    }
+    
+    document.getElementById('keyboard-nav')?.classList.toggle('active', body.classList.contains('keyboard-navigation'));
+    document.getElementById('links-highlight')?.classList.toggle('active', body.classList.contains('links-highlight'));
+    document.getElementById('reading-guide')?.classList.toggle('active', document.getElementById('reading-guide-line')?.classList.contains('active'));
+    
+    document.getElementById('animations-on')?.classList.toggle('active', !body.classList.contains('no-animations'));
+    document.getElementById('animations-off')?.classList.toggle('active', body.classList.contains('no-animations'));
+}
+
+function saveAccessibilityPreference(key, value) {
+    try {
+        const preferences = JSON.parse(localStorage.getItem('accessibility_preferences') || '{}');
+        preferences[key] = value;
+        localStorage.setItem('accessibility_preferences', JSON.stringify(preferences));
+    } catch (error) {
+        console.error('Error saving accessibility preference:', error);
+    }
+}
+
+function loadAccessibilityPreferences() {
+    try {
+        const preferences = JSON.parse(localStorage.getItem('accessibility_preferences') || '{}');
+        
+        if (preferences.fontSize && preferences.fontSize !== 'normal') {
+            const fontSizeMap = {
+                'large': 'font-large',
+                'larger': 'font-larger',
+                'largest': 'font-largest'
+            };
+            if (fontSizeMap[preferences.fontSize]) {
+                document.body.classList.add(fontSizeMap[preferences.fontSize]);
+            }
+        }
+        
+        if (preferences.contrast && preferences.contrast !== 'normal') {
+            setContrast(preferences.contrast);
+        }
+        
+        if (preferences.keyboardNavigation) {
+            document.body.classList.add('keyboard-navigation');
+        }
+        
+        if (preferences.linksHighlight) {
+            document.body.classList.add('links-highlight');
+        }
+        
+        if (preferences.readingGuide) {
+            document.getElementById('reading-guide-line')?.classList.add('active');
+        }
+        
+        if (preferences.animations === false) {
+            document.body.classList.add('no-animations');
+        }
+        
+        setTimeout(updateAccessibilityButtonStates, 100);
+        
+    } catch (error) {
+        console.error('Error loading accessibility preferences:', error);
+    }
+}
+
+function resetAllAccessibilitySettings() {
+    const body = document.body;
+    const readingGuideLine = document.getElementById('reading-guide-line');
+    
+    const accessibilityClasses = [
+        'font-large', 'font-larger', 'font-largest',
+        'high-contrast', 'invert-colors',
+        'keyboard-navigation', 'links-highlight', 'no-animations'
+    ];
+    
+    accessibilityClasses.forEach(cls => body.classList.remove(cls));
+    
+    readingGuideLine?.classList.remove('active');
+    
+    localStorage.removeItem('accessibility_preferences');
+    
+    updateAccessibilityButtonStates();
+    
+    trackEvent('accessibility_settings_reset');
+    
+    showNotification('הגדרות הנגישות אופסו בהצלחה', 'success');
+}
+
+function initializeDraggableAccessibilityButton(button) {
+    if (!button) return;
+    
+    let isDragging = false;
+    let startX, startY, startLeft, startTop;
+    let clickTimeout;
+    
+    const savedPosition = JSON.parse(localStorage.getItem('accessibility_button_position') || '{}');
+    if (savedPosition.left && savedPosition.top) {
+        button.style.left = savedPosition.left;
+        button.style.top = savedPosition.top;
+        button.style.transform = 'none';
+    }
+    
+    button.addEventListener('mousedown', handleStart);
+    document.addEventListener('mousemove', handleMove);
+    document.addEventListener('mouseup', handleEnd);
+    
+    button.addEventListener('touchstart', handleStart, { passive: false });
+    document.addEventListener('touchmove', handleMove, { passive: false });
+    document.addEventListener('touchend', handleEnd);
+    
+    function handleStart(e) {
+        e.preventDefault();
+        
+        const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+        const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+        
+        startX = clientX;
+        startY = clientY;
+        
+        const rect = button.getBoundingClientRect();
+        startLeft = rect.left;
+        startTop = rect.top;
+        
+        clickTimeout = setTimeout(() => {
+            isDragging = true;
+            button.classList.add('dragging');
+            document.body.style.userSelect = 'none';
+        }, 150);
+    }
+    
+    function handleMove(e) {
+        if (!isDragging) return;
+        
+        e.preventDefault();
+        
+        const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+        const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+        
+        const deltaX = clientX - startX;
+        const deltaY = clientY - startY;
+        
+        let newLeft = startLeft + deltaX;
+        let newTop = startTop + deltaY;
+        
+        const buttonSize = 60;
+        const margin = 10;
+        
+        newLeft = Math.max(margin, Math.min(window.innerWidth - buttonSize - margin, newLeft));
+        newTop = Math.max(margin, Math.min(window.innerHeight - buttonSize - margin, newTop));
+        
+        button.style.left = newLeft + 'px';
+        button.style.top = newTop + 'px';
+        button.style.transform = 'none';
+    }
+    
+    function handleEnd(e) {
+        clearTimeout(clickTimeout);
+        
+        if (isDragging) {
+            isDragging = false;
+            button.classList.remove('dragging');
+            document.body.style.userSelect = '';
+            
+            const position = {
+                left: button.style.left,
+                top: button.style.top
+            };
+            localStorage.setItem('accessibility_button_position', JSON.stringify(position));
+            
+            e.preventDefault();
+            e.stopPropagation();
+            
+            trackEvent('accessibility_button_moved', position);
+        }
+    }
+    
+    button.addEventListener('contextmenu', (e) => {
+        if (isDragging) {
+            e.preventDefault();
+        }
+    });
+}
 
 document.addEventListener('click', (e) => {
     if (e.target.matches('.btn-primary')) {

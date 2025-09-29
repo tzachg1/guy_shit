@@ -149,384 +149,487 @@
         </div>
     </nav>
 
-    <header id="home" class="hero" role="banner">
-        <div class="hero-background" aria-hidden="true">
-            <div class="animated-shapes">
-                <div class="shape shape-1" aria-hidden="true"></div>
-                <div class="shape shape-2" aria-hidden="true"></div>
-                <div class="shape shape-3" aria-hidden="true"></div>
-                <div class="shape shape-4" aria-hidden="true"></div>
-            </div>
+    <div id="accessibility-menu" class="accessibility-menu" role="dialog" aria-labelledby="accessibility-title"
+        aria-hidden="true">
+        <div class="accessibility-header">
+            <h2 id="accessibility-title">תפריט נגישות</h2>
+            <button id="accessibility-close" class="accessibility-close" aria-label="סגור תפריט נגישות">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
         </div>
-
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="title-line animate-text">לא עוד יועץ</span>
-                    <span class="title-line animate-text delay-1">שותף לחיים</span>
-                    <span class="title-accent animate-text delay-2">G.A Strategy</span>
-                </h1>
-                <p class="hero-subtitle animate-text delay-3">
-                    ליווי אסטרטגי לבעלי עסקים – מהרעיון ועד לביצוע. חשיבה עסקית שמובילה לתוצאות מדידות וצמיחה בת קיימא.
-                    <br>
-                    יחד נבנה אסטרטגיה ברורה, נזהה הזדמנויות חדשות וניצור יתרון תחרותי יציב לאורך זמן.
-                </p>
-                <div class="hero-buttons animate-text delay-4" role="group" aria-label="פעולות ראשיות">
-                    <a href="#contact" class="btn btn-primary" aria-label="צור קשר לקביעת פגישה">
-                        <span>בואו נתחיל</span>
-                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-                    <a href="#services" class="btn btn-secondary" aria-label="עבור לקטע השירותים">
-                        <span>השירותים שלנו</span>
-                    </a>
-                </div>
-                <div class="hero-stats animate-text delay-5" role="region" aria-label="סטטיסטיקות החברה">
-                    <div class="stat">
-                        <div class="stat-number" data-target="50" aria-label="50 לקוחות מרוצים">0</div>
-                        <div class="stat-label">לקוחות מרוצים</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number" data-target="95" aria-label="95 אחוז הצלחה">0</div>
-                        <div class="stat-label">% הצלחה</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number" data-target="10" aria-label="10 שנות ניסיון">0</div>
-                        <div class="stat-label">שנות ניסיון</div>
-                    </div>
+        <div class="accessibility-content">
+            <div class="accessibility-section">
+                <h3>גודל טקסט</h3>
+                <div class="accessibility-controls">
+                    <button class="accessibility-btn" id="font-decrease" aria-label="הקטן טקסט">
+                        <i class="fas fa-minus" aria-hidden="true"></i>
+                        <span>הקטן</span>
+                    </button>
+                    <button class="accessibility-btn" id="font-reset" aria-label="איפוס גודל טקסט">
+                        <i class="fas fa-undo" aria-hidden="true"></i>
+                        <span>איפוס</span>
+                    </button>
+                    <button class="accessibility-btn" id="font-increase" aria-label="הגדל טקסט">
+                        <i class="fas fa-plus" aria-hidden="true"></i>
+                        <span>הגדל</span>
+                    </button>
                 </div>
             </div>
-        </div>
 
-        <div class="scroll-indicator" role="button" tabindex="0" aria-label="גלול למטה לתוכן נוסף">
-            <div class="scroll-arrow" aria-hidden="true"></div>
-        </div>
-    </header>
+            <div class="accessibility-section">
+                <h3>ניגודיות</h3>
+                <div class="accessibility-controls">
+                    <button class="accessibility-btn" id="contrast-normal" aria-label="ניגודיות רגילה">
+                        <i class="fas fa-circle" aria-hidden="true"></i>
+                        <span>רגיל</span>
+                    </button>
+                    <button class="accessibility-btn" id="contrast-high" aria-label="ניגודיות גבוהה">
+                        <i class="fas fa-adjust" aria-hidden="true"></i>
+                        <span>גבוהה</span>
+                    </button>
+                    <button class="accessibility-btn" id="contrast-invert" aria-label="היפוך צבעים">
+                        <i class="fas fa-exchange-alt" aria-hidden="true"></i>
+                        <span>היפוך</span>
+                    </button>
+                </div>
+            </div>
 
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title">למה לבחור ב-G.A Strategy?</h2>
-                    <p class="about-description">
-                        במהלך יותר מעשור של ליווי וניהול עסקים, ראיתי שוב ושוב את אותם אתגרים: חוסר מיקוד, בלבול
-                        אסטרטגי, קושי בניהול מנהלים או בישום רעיונות טובים לביצוע.
+            <div class="accessibility-section">
+                <h3>ניווט</h3>
+                <div class="accessibility-controls">
+                    <button class="accessibility-btn" id="keyboard-nav" aria-label="הדגש ניווט מקלדת">
+                        <i class="fas fa-keyboard" aria-hidden="true"></i>
+                        <span>מקלדת</span>
+                    </button>
+                    <button class="accessibility-btn" id="links-highlight" aria-label="הדגש קישורים">
+                        <i class="fas fa-link" aria-hidden="true"></i>
+                        <span>קישורים</span>
+                    </button>
+                    <button class="accessibility-btn" id="reading-guide" aria-label="מדריך קריאה">
+                        <i class="fas fa-arrows-alt-h" aria-hidden="true"></i>
+                        <span>מדריך</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="accessibility-section">
+                <h3>אנימציות</h3>
+                <div class="accessibility-controls">
+                    <button class="accessibility-btn" id="animations-on" aria-label="הפעל אנימציות">
+                        <i class="fas fa-play" aria-hidden="true"></i>
+                        <span>הפעל</span>
+                    </button>
+                    <button class="accessibility-btn" id="animations-off" aria-label="כבה אנימציות">
+                        <i class="fas fa-pause" aria-hidden="true"></i>
+                        <span>כבה</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="accessibility-section">
+                <h3>איפוס הגדרות</h3>
+                <button class="accessibility-btn accessibility-reset" id="reset-all" aria-label="איפוס כל ההגדרות">
+                    <i class="fas fa-refresh" aria-hidden="true"></i>
+                    <span>איפוס כללי</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button id="accessibility-toggle" class="accessibility-toggle" aria-label="פתח תפריט נגישות" title="נגישות">
+        <i class="fas fa-universal-access" aria-hidden="true"></i>
+        <span class="sr-only">נגישות</span>
+    </button>
+
+    <div id="reading-guide-line" class="reading-guide-line" aria-hidden="true"></div>
+
+    <div class="main-content">
+        <header id="home" class="hero" role="banner">
+            <div class="hero-background" aria-hidden="true">
+                <div class="animated-shapes">
+                    <div class="shape shape-1" aria-hidden="true"></div>
+                    <div class="shape shape-2" aria-hidden="true"></div>
+                    <div class="shape shape-3" aria-hidden="true"></div>
+                    <div class="shape shape-4" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="title-line animate-text">לא עוד יועץ</span>
+                        <span class="title-line animate-text delay-1">שותף לחיים</span>
+                        <span class="title-accent animate-text delay-2">G.A Strategy</span>
+                    </h1>
+                    <p class="hero-subtitle animate-text delay-3">
+                        ליווי אסטרטגי לבעלי עסקים – מהרעיון ועד לביצוע. חשיבה עסקית שמובילה לתוצאות מדידות וצמיחה בת
+                        קיימא.
+                        <br>
+                        יחד נבנה אסטרטגיה ברורה, נזהה הזדמנויות חדשות וניצור יתרון תחרותי יציב לאורך זמן.
                     </p>
-                    <p class="about-description">
-                        לא פעם מוצרים מצוינים נתקעו רק מפני שלא נבנתה עבורם אסטרטגיה נכונה. מתוך החוויות האלה למדתי שכל
-                        אסטרטגיה חייבת להיות ישימה, וכל יישום אסטרטגי צריך לשרת מטרה ברורה.
-                    </p>
-                    <p class="about-description">
-                        <strong>החזון שלי הוא להנגיש חשיבה עסקית פשוטה וברורה</strong>, להציע ליווי צמוד, ולעזור לבעלי
-                        עסקים להפוך רעיונות ותוכניות לביצוע מדויק – תוך שמירה על הערכים והלב של העסק.
-                    </p>
-                    <div class="about-features">
-                        <div class="feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>אסטרטגיות מבוססות נתונים</span>
+                    <div class="hero-buttons animate-text delay-4" role="group" aria-label="פעולות ראשיות">
+                        <a href="#contact" class="btn btn-primary" aria-label="צור קשר לקביעת פגישה">
+                            <span>בואו נתחיל</span>
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        <a href="#services" class="btn btn-secondary" aria-label="עבור לקטע השירותים">
+                            <span>השירותים שלנו</span>
+                        </a>
+                    </div>
+                    <div class="hero-stats animate-text delay-5" role="region" aria-label="סטטיסטיקות החברה">
+                        <div class="stat">
+                            <div class="stat-number" data-target="50" aria-label="50 לקוחות מרוצים">0</div>
+                            <div class="stat-label">לקוחות מרוצים</div>
                         </div>
-                        <div class="feature">
-                            <span>פתרונות מותאמים אישית</span>
-                            <i class="fas fa-check-circle"></i>
+                        <div class="stat">
+                            <div class="stat-number" data-target="95" aria-label="95 אחוז הצלחה">0</div>
+                            <div class="stat-label">% הצלחה</div>
                         </div>
-                        <div class="feature">
-                            <span>תוצאות מדידות</span>
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>ליווי שוטף</span>
+                        <div class="stat">
+                            <div class="stat-number" data-target="10" aria-label="10 שנות ניסיון">0</div>
+                            <div class="stat-label">שנות ניסיון</div>
                         </div>
                     </div>
                 </div>
-                <div class="about-visual">
-                    <div class="visual-element">
-                        <div class="circle-chart">
-                            <div class="circle" data-percentage="95">
-                                <div class="circle-content">
-                                    <span class="percentage">95%</span>
-                                    <span class="label">Client Satisfaction</span>
+            </div>
+
+            <div class="scroll-indicator" role="button" tabindex="0" aria-label="גלול למטה לתוכן נוסף">
+                <div class="scroll-arrow" aria-hidden="true"></div>
+            </div>
+        </header>
+
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2 class="section-title">למה לבחור ב-G.A Strategy?</h2>
+                        <p class="about-description">
+                            במהלך יותר מעשור של ליווי וניהול עסקים, ראיתי שוב ושוב את אותם אתגרים: חוסר מיקוד, בלבול
+                            אסטרטגי, קושי בניהול מנהלים או בישום רעיונות טובים לביצוע.
+                        </p>
+                        <p class="about-description">
+                            לא פעם מוצרים מצוינים נתקעו רק מפני שלא נבנתה עבורם אסטרטגיה נכונה. מתוך החוויות האלה למדתי
+                            שכל
+                            אסטרטגיה חייבת להיות ישימה, וכל יישום אסטרטגי צריך לשרת מטרה ברורה.
+                        </p>
+                        <p class="about-description">
+                            <strong>החזון שלי הוא להנגיש חשיבה עסקית פשוטה וברורה</strong>, להציע ליווי צמוד, ולעזור
+                            לבעלי
+                            עסקים להפוך רעיונות ותוכניות לביצוע מדויק – תוך שמירה על הערכים והלב של העסק.
+                        </p>
+                        <div class="about-features">
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>אסטרטגיות מבוססות נתונים</span>
+                            </div>
+                            <div class="feature">
+                                <span>פתרונות מותאמים אישית</span>
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="feature">
+                                <span>תוצאות מדידות</span>
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>ליווי שוטף</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-visual">
+                        <div class="visual-element">
+                            <div class="circle-chart">
+                                <div class="circle" data-percentage="95">
+                                    <div class="circle-content">
+                                        <span class="percentage">95%</span>
+                                        <span class="label">Client Satisfaction</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">מוכנים לשנות את העסק שלכם?</h2>
-                <p class="cta-subtitle">
-                    בואו נדבר על הדרך להשיג את מטרות הצמיחה שלכם ולשחרר את הפוטנציאל העסקי שלכם.
-                </p>
-                <a href="#contact" class="btn btn-primary btn-large">
-                    <span>קביעת פגישה</span>
-                    <i class="fas fa-calendar-alt"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">תחומי השירות שלנו</h2>
-                <p class="section-subtitle">פתרונות עסקיים מקיפים המותאמים למטרות הצמיחה שלכם</p>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="service-title">פיתוח עסקי ובניית תוכניות עבודה</h3>
-                    <p class="service-description">
-                        פיתוח אסטרטגיות עסקיות מקיפות המותאמות לחזון שלכם והזדמנויות השוק. ניתוח מלא של המצב הנוכחי
-                        ובניית תוכנית מותאמת אישית.
+        <section class="cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">מוכנים לשנות את העסק שלכם?</h2>
+                    <p class="cta-subtitle">
+                        בואו נדבר על הדרך להשיג את מטרות הצמיחה שלכם ולשחרר את הפוטנציאל העסקי שלכם.
                     </p>
-                    <ul class="service-features">
-                        <li>ניתוח שוק מעמיק</li>
-                        <li>מיפוי אתגרים והזדמנויות</li>
-                        <li>בניית תוכנית עבודה מדויקת</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3 class="service-title">גיבוש אסטרטגיית עבודה עסקית</h3>
-                    <p class="service-description">
-                        יצירת אסטרטגיה חכמה ומדויקת שמותאמת לעסק שלכם. חיבור בין החזון של הבעלים לביצוע בשטח, עם הגדרות
-                        תפקידים ונהלי עבודה ברורים.
-                    </p>
-                    <ul class="service-features">
-                        <li>הגדרות תפקידים מדויקות</li>
-                        <li>נהלי עבודה אפקטיביים</li>
-                        <li>העברת חזון לעובדים</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3 class="service-title">הקמת מערכי מכירה אפקטיביים</h3>
-                    <p class="service-description">
-                        בניית מערכי מכירה שמייצרים תוצאות אמיתיות. לימוד חמשת השלבים למכירה נכונה והטמעתם בשטח עם ליווי
-                        צמוד.
-                    </p>
-                    <ul class="service-features">
-                        <li>הצפת והעמקת צורך הלקוח</li>
-                        <li>שיקוף והסכמה על הצורך</li>
-                        <li>יצירת תחושת הזדמנות</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="service-title">ליווי אישי למנהלים</h3>
-                    <p class="service-description">
-                        תכנון, ניהול והובלת צוותים. חיבור בין חזון הבעלים למנהל התפעול, כולל הבנת הדינמיקה הארגונית
-                        וריתום הפוליטיקה הארגונית לטובת העסק.
-                    </p>
-                    <ul class="service-features">
-                        <li>ליווי מנהלי תפעול</li>
-                        <li>חיבור חזון לביצוע</li>
-                        <li>ניהול דינמיקה ארגונית</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
-                    <h3 class="service-title">ניתוח שוק ובידול תחרותי</h3>
-                    <p class="service-description">
-                        ניתוח מתחרים, מיקוד קהל יעד ובניית יתרון תחרותי בר-קיימא. זיהוי הבידול האמיתי שלכם ותרגומו
-                        לאסטרטגיה מנצחת.
-                    </p>
-                    <ul class="service-features">
-                        <li>ניתוח תחרותי מעמיק</li>
-                        <li>מיקוד קהל יעד</li>
-                        <li>בניית יתרון תחרותי</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="service-title">ליווי יזמים</h3>
-                    <p class="service-description">
-                        מהרעיון ועד שלב ההקמה. ליווי צמוד מחידוד החזון, דרך בניית אסטרטגיה ותוכנית עבודה, ועד ליישום
-                        בשטח עם מערכות תפעול מלאות.
-                    </p>
-                    <ul class="service-features">
-                        <li>חידוד חזון ובידול</li>
-                        <li>בניית מבנה ארגוני</li>
-                        <li>הקמת מערכות תפעול</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">צור קשר</h2>
-                <p class="section-subtitle">מוכנים להתחיל את מסע השינוי שלכם? צרו קשר היום.</p>
-            </div>
-
-            <div class="contact-content">
-                <div class="contact-info">
-                    <a href="tel:+972523821686" class="contact-card contact-card-clickable">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>טלפון</h3>
-                            <p>052-3821686</p>
-                        </div>
+                    <a href="#contact" class="btn btn-primary btn-large">
+                        <span>קביעת פגישה</span>
+                        <i class="fas fa-calendar-alt"></i>
                     </a>
-
-                    <a href="mailto:Guy990490@gmail.com?subject=פנייה מהאתר - G.A Strategy&body=שלום,%0D%0A%0D%0Aהגעתי אליכם דרך האתר ואשמח לקבל מידע נוסף על השירותים שלכם.%0D%0A%0D%0Aתודה!"
-                        class="contact-card contact-card-clickable">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>אימייל</h3>
-                            <p>Guy990490@gmail.com</p>
-                        </div>
-                    </a>
-
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>שעות פעילות</h3>
-                            <p>א׳ - ו׳: 09:00 - 18:00</p>
-                        </div>
-                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">תחומי השירות שלנו</h2>
+                    <p class="section-subtitle">פתרונות עסקיים מקיפים המותאמים למטרות הצמיחה שלכם</p>
                 </div>
 
-                <div class="contact-form-container">
-                    <form class="contact-form" id="contact-form">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" required>
-                            <label for="name">שם מלא</label>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
                         </div>
+                        <h3 class="service-title">פיתוח עסקי ובניית תוכניות עבודה</h3>
+                        <p class="service-description">
+                            פיתוח אסטרטגיות עסקיות מקיפות המותאמות לחזון שלכם והזדמנויות השוק. ניתוח מלא של המצב הנוכחי
+                            ובניית תוכנית מותאמת אישית.
+                        </p>
+                        <ul class="service-features">
+                            <li>ניתוח שוק מעמיק</li>
+                            <li>מיפוי אתגרים והזדמנויות</li>
+                            <li>בניית תוכנית עבודה מדויקת</li>
+                        </ul>
+                    </div>
 
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" required>
-                            <label for="email">כתובת אימייל</label>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cogs"></i>
                         </div>
+                        <h3 class="service-title">גיבוש אסטרטגיית עבודה עסקית</h3>
+                        <p class="service-description">
+                            יצירת אסטרטגיה חכמה ומדויקת שמותאמת לעסק שלכם. חיבור בין החזון של הבעלים לביצוע בשטח, עם
+                            הגדרות
+                            תפקידים ונהלי עבודה ברורים.
+                        </p>
+                        <ul class="service-features">
+                            <li>הגדרות תפקידים מדויקות</li>
+                            <li>נהלי עבודה אפקטיביים</li>
+                            <li>העברת חזון לעובדים</li>
+                        </ul>
+                    </div>
 
-                        <div class="form-group">
-                            <input type="tel" id="phone" name="phone">
-                            <label for="phone">מספר טלפון</label>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-rocket"></i>
                         </div>
+                        <h3 class="service-title">הקמת מערכי מכירה אפקטיביים</h3>
+                        <p class="service-description">
+                            בניית מערכי מכירה שמייצרים תוצאות אמיתיות. לימוד חמשת השלבים למכירה נכונה והטמעתם בשטח עם
+                            ליווי
+                            צמוד.
+                        </p>
+                        <ul class="service-features">
+                            <li>הצפת והעמקת צורך הלקוח</li>
+                            <li>שיקוף והסכמה על הצורך</li>
+                            <li>יצירת תחושת הזדמנות</li>
+                        </ul>
+                    </div>
 
-                        <div class="form-group">
-                            <div class="custom-select" id="service-select">
-                                <div class="select-trigger" tabindex="0">
-                                    <span class="select-text">בחר נושא</span>
-                                    <i class="fas fa-chevron-down select-arrow"></i>
-                                </div>
-                                <div class="select-options">
-                                    <div class="select-option" data-value="business-development">פיתוח עסקי</div>
-                                    <div class="select-option" data-value="strategy-development">גיבוש אסטרטגיה</div>
-                                    <div class="select-option" data-value="sales-systems">מערכי מכירה</div>
-                                    <div class="select-option" data-value="management-coaching">ליווי מנהלים</div>
-                                    <div class="select-option" data-value="market-analysis">ניתוח שוק</div>
-                                    <div class="select-option" data-value="startup-consulting">ליווי יזמים</div>
-                                </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="service-title">ליווי אישי למנהלים</h3>
+                        <p class="service-description">
+                            תכנון, ניהול והובלת צוותים. חיבור בין חזון הבעלים למנהל התפעול, כולל הבנת הדינמיקה הארגונית
+                            וריתום הפוליטיקה הארגונית לטובת העסק.
+                        </p>
+                        <ul class="service-features">
+                            <li>ליווי מנהלי תפעול</li>
+                            <li>חיבור חזון לביצוע</li>
+                            <li>ניהול דינמיקה ארגונית</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3 class="service-title">ניתוח שוק ובידול תחרותי</h3>
+                        <p class="service-description">
+                            ניתוח מתחרים, מיקוד קהל יעד ובניית יתרון תחרותי בר-קיימא. זיהוי הבידול האמיתי שלכם ותרגומו
+                            לאסטרטגיה מנצחת.
+                        </p>
+                        <ul class="service-features">
+                            <li>ניתוח תחרותי מעמיק</li>
+                            <li>מיקוד קהל יעד</li>
+                            <li>בניית יתרון תחרותי</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="service-title">ליווי יזמים</h3>
+                        <p class="service-description">
+                            מהרעיון ועד שלב ההקמה. ליווי צמוד מחידוד החזון, דרך בניית אסטרטגיה ותוכנית עבודה, ועד ליישום
+                            בשטח עם מערכות תפעול מלאות.
+                        </p>
+                        <ul class="service-features">
+                            <li>חידוד חזון ובידול</li>
+                            <li>בניית מבנה ארגוני</li>
+                            <li>הקמת מערכות תפעול</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">צור קשר</h2>
+                    <p class="section-subtitle">מוכנים להתחיל את מסע השינוי שלכם? צרו קשר היום.</p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <a href="tel:+972523821686" class="contact-card contact-card-clickable">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
                             </div>
-                            <input type="hidden" id="service" name="service" required>
-                            <label for="service" class="custom-select-label">בחר נושא</label>
-                        </div>
+                            <div class="contact-details">
+                                <h3>טלפון</h3>
+                                <p>052-3821686</p>
+                            </div>
+                        </a>
 
-                        <div class="form-group">
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                            <label for="message">הודעה</label>
-                        </div>
+                        <a href="mailto:Guy990490@gmail.com?subject=פנייה מהאתר - G.A Strategy&body=שלום,%0D%0A%0D%0Aהגעתי אליכם דרך האתר ואשמח לקבל מידע נוסף על השירותים שלכם.%0D%0A%0D%0Aתודה!"
+                            class="contact-card contact-card-clickable">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>אימייל</h3>
+                                <p>Guy990490@gmail.com</p>
+                            </div>
+                        </a>
 
-                        <button type="submit" class="btn btn-primary btn-full">
-                            <span>שלח הודעה</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <img src="logo.png" alt="G.A Strategy Logo" class="logo-icon">
-                        <span class="logo-text">G.A Strategy & Business Growth</span>
-                    </div>
-                    <p class="footer-description">
-                        ליווי אסטרטגי לבעלי עסקים – מהרעיון ועד לביצוע. חשיבה עסקית שמובילה לתוצאות.
-                    </p>
-                </div>
-
-                <div class="footer-links">
-                    <div class="footer-section">
-                        <h4>שירותים</h4>
-                        <ul>
-                            <li><a href="#services">פיתוח עסקי</a></li>
-                            <li><a href="#services">גיבוש אסטרטגיה</a></li>
-                            <li><a href="#services">מערכי מכירה</a></li>
-                            <li><a href="#services">ליווי מנהלים</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-section">
-                        <h4>חברה</h4>
-                        <ul>
-                            <li><a href="#about">אודות</a></li>
-                            <li><a href="#contact">צור קשר</a></li>
-                            <li><a href="#">מדיניות פרטיות</a></li>
-                            <li><a href="#">תנאי שימוש</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="footer-section">
-                        <h4>התחברות</h4>
-                        <div class="social-links">
-                            <a href="https://wa.me/972523821686" target="_blank" class="social-link whatsapp-link">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-                            <a href="https://www.instagram.com/guyagam?igsh=cDQyYmE4NGJsd2x4&utm_source=qr"
-                                target="_blank" class="social-link instagram-link">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/guy-agam-853804280?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-                                target="_blank" class="social-link linkedin-link">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h3>שעות פעילות</h3>
+                                <p>א׳ - ו׳: 09:00 - 18:00</p>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="contact-form-container">
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" required>
+                                <label for="name">שם מלא</label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" required>
+                                <label for="email">כתובת אימייל</label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="tel" id="phone" name="phone">
+                                <label for="phone">מספר טלפון</label>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="custom-select" id="service-select">
+                                    <div class="select-trigger" tabindex="0">
+                                        <span class="select-text">בחר נושא</span>
+                                        <i class="fas fa-chevron-down select-arrow"></i>
+                                    </div>
+                                    <div class="select-options">
+                                        <div class="select-option" data-value="business-development">פיתוח עסקי</div>
+                                        <div class="select-option" data-value="strategy-development">גיבוש אסטרטגיה
+                                        </div>
+                                        <div class="select-option" data-value="sales-systems">מערכי מכירה</div>
+                                        <div class="select-option" data-value="management-coaching">ליווי מנהלים</div>
+                                        <div class="select-option" data-value="market-analysis">ניתוח שוק</div>
+                                        <div class="select-option" data-value="startup-consulting">ליווי יזמים</div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="service" name="service" required>
+                                <label for="service" class="custom-select-label">בחר נושא</label>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                                <label for="message">הודעה</label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full">
+                                <span>שלח הודעה</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="footer-bottom">
-                <p>&copy; 2024 G.A Strategy & Business Growth. כל הזכויות שמורות.</p>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <img src="logo.png" alt="G.A Strategy Logo" class="logo-icon">
+                            <span class="logo-text">G.A Strategy & Business Growth</span>
+                        </div>
+                        <p class="footer-description">
+                            ליווי אסטרטגי לבעלי עסקים – מהרעיון ועד לביצוע. חשיבה עסקית שמובילה לתוצאות.
+                        </p>
+                    </div>
+
+                    <div class="footer-links">
+                        <div class="footer-section">
+                            <h4>שירותים</h4>
+                            <ul>
+                                <li><a href="#services">פיתוח עסקי</a></li>
+                                <li><a href="#services">גיבוש אסטרטגיה</a></li>
+                                <li><a href="#services">מערכי מכירה</a></li>
+                                <li><a href="#services">ליווי מנהלים</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-section">
+                            <h4>חברה</h4>
+                            <ul>
+                                <li><a href="#about">אודות</a></li>
+                                <li><a href="#contact">צור קשר</a></li>
+                                <li><a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">מדיניות
+                                        פרטיות</a></li>
+                                <li><a href="terms-of-use.html" target="_blank" rel="noopener noreferrer">תנאי שימוש</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-section">
+                            <h4>התחברות</h4>
+                            <div class="social-links">
+                                <a href="https://wa.me/972523821686" target="_blank" class="social-link whatsapp-link">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                                <a href="https://www.instagram.com/guyagam?igsh=cDQyYmE4NGJsd2x4&utm_source=qr"
+                                    target="_blank" class="social-link instagram-link">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/guy-agam-853804280?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                                    target="_blank" class="social-link linkedin-link">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2024 G.A Strategy & Business Growth. כל הזכויות שמורות.</p>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="script.js"></script>
