@@ -2307,12 +2307,12 @@ section {
     top: 50%;
     left: -400px;
     transform: translateY(-50%);
-    width: 350px;
-    max-height: 80vh;
+    width: 320px;
+    max-height: 90vh;
     background: rgba(10, 20, 38, 0.98);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
+    border-radius: 12px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     z-index: 10001;
     transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -2328,13 +2328,13 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 12px 16px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .accessibility-header h2 {
     color: var(--text-white);
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
     font-weight: 600;
     margin: 0;
 }
@@ -2356,11 +2356,11 @@ section {
 }
 
 .accessibility-content {
-    padding: 20px;
+    padding: 12px 16px;
 }
 
 .accessibility-section {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 }
 
 .accessibility-section:last-child {
@@ -2369,15 +2369,15 @@ section {
 
 .accessibility-section h3 {
     color: var(--accent-cyan);
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-base);
     font-weight: 600;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     text-align: right;
 }
 
 .accessibility-controls {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
     justify-content: flex-end;
 }
@@ -2386,16 +2386,16 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    padding: 12px 16px;
+    gap: 3px;
+    padding: 8px 12px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    border-radius: 8px;
     color: var(--text-light);
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: var(--font-size-sm);
-    min-width: 80px;
+    font-size: var(--font-size-xs);
+    min-width: 70px;
     text-align: center;
 }
 
@@ -2419,7 +2419,7 @@ section {
 }
 
 .accessibility-btn i {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .accessibility-reset {
@@ -2624,9 +2624,9 @@ body.no-animations .animated-shapes {
     
     .accessibility-menu {
         width: calc(100vw - 20px);
-        max-width: 320px;
-        left: -340px;
-        max-height: calc(100vh - 40px);
+        max-width: 300px;
+        left: -320px;
+        max-height: calc(100vh - 20px);
         /* Improve scrolling on mobile */
         -webkit-overflow-scrolling: touch;
         /* Better backdrop for mobile */
@@ -2640,14 +2640,14 @@ body.no-animations .animated-shapes {
     
     .accessibility-controls {
         justify-content: center;
-        gap: 8px;
+        gap: 6px;
     }
     
     .accessibility-btn {
-        min-width: 60px;
-        min-height: 44px;
-        padding: 12px 10px;
-        font-size: var(--font-size-sm);
+        min-width: 55px;
+        min-height: 40px;
+        padding: 8px 8px;
+        font-size: var(--font-size-xs);
         /* Better touch targets */
         -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
@@ -2667,11 +2667,11 @@ body.no-animations .animated-shapes {
     
     /* Better spacing for mobile */
     .accessibility-section {
-        padding: 15px;
+        margin-bottom: 12px;
     }
     
     .accessibility-content {
-        padding: 0;
+        padding: 8px 12px;
     }
 }
 
