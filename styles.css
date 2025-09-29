@@ -2577,8 +2577,9 @@ body.invert-colors .main-content {
 }
 
 
-body.invert-colors img,
-body.invert-colors video {
+/* Images and videos inside inverted content need to be inverted back to normal */
+body.invert-colors .main-content img,
+body.invert-colors .main-content video {
     filter: invert(1) hue-rotate(180deg);
 }
 
@@ -2610,29 +2611,67 @@ body.no-animations .animated-shapes {
 @media (max-width: 768px) {
     .accessibility-toggle {
         left: 10px;
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
+        width: 56px;
+        height: 56px;
+        font-size: 22px;
+        /* Better touch target size */
+        min-width: 44px;
+        min-height: 44px;
+        /* Improve touch responsiveness */
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
     }
     
     .accessibility-menu {
-        width: calc(100vw - 40px);
-        max-width: 300px;
-        left: -320px;
+        width: calc(100vw - 20px);
+        max-width: 320px;
+        left: -340px;
+        max-height: calc(100vh - 40px);
+        /* Improve scrolling on mobile */
+        -webkit-overflow-scrolling: touch;
+        /* Better backdrop for mobile */
+        backdrop-filter: blur(30px);
+        background: rgba(10, 20, 38, 0.95);
     }
     
     .accessibility-menu.active {
-        left: 20px;
+        left: 10px;
     }
     
     .accessibility-controls {
         justify-content: center;
+        gap: 8px;
     }
     
     .accessibility-btn {
-        min-width: 70px;
-        padding: 10px 12px;
-        font-size: var(--font-size-xs);
+        min-width: 60px;
+        min-height: 44px;
+        padding: 12px 10px;
+        font-size: var(--font-size-sm);
+        /* Better touch targets */
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        /* Improve touch feedback */
+        transition: all 0.2s ease;
+    }
+    
+    .accessibility-btn:active {
+        transform: scale(0.95);
+        background: rgba(0, 212, 255, 0.3);
+    }
+    
+    /* Prevent iOS zoom on double tap */
+    .accessibility-menu * {
+        touch-action: manipulation;
+    }
+    
+    /* Better spacing for mobile */
+    .accessibility-section {
+        padding: 15px;
+    }
+    
+    .accessibility-content {
+        padding: 0;
     }
 }
 

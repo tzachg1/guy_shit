@@ -1077,16 +1077,36 @@ function initializeAccessibilityMenu() {
     
     initializeDraggableAccessibilityButton(accessibilityToggle);
     
-    accessibilityToggle.addEventListener('click', () => {
+    // Accessibility toggle with mobile support
+    const handleToggleClick = () => {
         const isOpen = accessibilityMenu.classList.contains('active');
         if (isOpen) {
             closeAccessibilityMenu();
         } else {
             openAccessibilityMenu();
         }
+    };
+    
+    accessibilityToggle.addEventListener('click', handleToggleClick);
+    
+    // Add touch support for mobile accessibility toggle
+    accessibilityToggle.addEventListener('touchend', (e) => {
+        // Only handle touch if not dragging and element exists
+        if (accessibilityToggle && !accessibilityToggle.classList.contains('dragging')) {
+            e.preventDefault();
+            e.stopPropagation();
+            handleToggleClick();
+        }
     });
     
-    accessibilityClose?.addEventListener('click', closeAccessibilityMenu);
+    // Close button with mobile support
+    if (accessibilityClose) {
+        accessibilityClose.addEventListener('click', closeAccessibilityMenu);
+        accessibilityClose.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            closeAccessibilityMenu();
+        });
+    }
     
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && accessibilityMenu.classList.contains('active')) {
@@ -1094,66 +1114,131 @@ function initializeAccessibilityMenu() {
         }
     });
     
-    document.addEventListener('click', (e) => {
-        if (!accessibilityMenu.contains(e.target) && !accessibilityToggle.contains(e.target)) {
+    // Outside click/touch detection with mobile support
+    const handleOutsideInteraction = (e) => {
+        if (accessibilityMenu && accessibilityToggle && 
+            !accessibilityMenu.contains(e.target) && !accessibilityToggle.contains(e.target)) {
             closeAccessibilityMenu();
+        }
+    };
+    
+    document.addEventListener('click', handleOutsideInteraction);
+    document.addEventListener('touchstart', handleOutsideInteraction, { passive: true });
+    
+    // Font size controls with touch support
+    const fontControls = [
+        { id: 'font-decrease', action: 'decrease' },
+        { id: 'font-reset', action: 'reset' },
+        { id: 'font-increase', action: 'increase' }
+    ];
+    
+    fontControls.forEach(({ id, action }) => {
+        const button = document.getElementById(id);
+        if (button) {
+            button.addEventListener('click', () => adjustFontSize(action));
+            // Add touch support for mobile
+            button.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                adjustFontSize(action);
+            });
+            // Add touch feedback
+            button.addEventListener('touchstart', (e) => {
+                if (e.currentTarget) {
+                    e.currentTarget.style.transform = 'scale(0.95)';
+                }
+            }, { passive: true });
+            button.addEventListener('touchend', (e) => {
+                setTimeout(() => {
+                    if (e.currentTarget) {
+                        e.currentTarget.style.transform = '';
+                    }
+                }, 150);
+            }, { passive: true });
         }
     });
     
-    document.getElementById('font-decrease')?.addEventListener('click', () => {
-        adjustFontSize('decrease');
+    // Contrast controls with touch support
+    const contrastControls = [
+        { id: 'contrast-normal', action: 'normal' },
+        { id: 'contrast-high', action: 'high' },
+        { id: 'contrast-invert', action: 'invert' }
+    ];
+    
+    contrastControls.forEach(({ id, action }) => {
+        const button = document.getElementById(id);
+        if (button) {
+            button.addEventListener('click', () => setContrast(action));
+            // Add touch support for mobile
+            button.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                setContrast(action);
+            });
+            // Add touch feedback
+            button.addEventListener('touchstart', (e) => {
+                if (e.currentTarget) {
+                    e.currentTarget.style.transform = 'scale(0.95)';
+                }
+            }, { passive: true });
+            button.addEventListener('touchend', (e) => {
+                setTimeout(() => {
+                    if (e.currentTarget) {
+                        e.currentTarget.style.transform = '';
+                    }
+                }, 150);
+            }, { passive: true });
+        }
     });
     
-    document.getElementById('font-reset')?.addEventListener('click', () => {
-        adjustFontSize('reset');
+    // Navigation and other controls with touch support
+    const accessibilityControls = [
+        { id: 'keyboard-nav', action: () => toggleKeyboardNavigation() },
+        { id: 'links-highlight', action: () => toggleLinksHighlight() },
+        { id: 'reading-guide', action: () => toggleReadingGuide() },
+        { id: 'animations-on', action: () => setAnimations(true) },
+        { id: 'animations-off', action: () => setAnimations(false) },
+        { id: 'reset-all', action: () => resetAllAccessibilitySettings() }
+    ];
+    
+    accessibilityControls.forEach(({ id, action }) => {
+        const button = document.getElementById(id);
+        if (button) {
+            button.addEventListener('click', action);
+            // Add touch support for mobile
+            button.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                action();
+            });
+            // Add touch feedback
+            button.addEventListener('touchstart', (e) => {
+                if (e.currentTarget) {
+                    e.currentTarget.style.transform = 'scale(0.95)';
+                }
+            }, { passive: true });
+            button.addEventListener('touchend', (e) => {
+                setTimeout(() => {
+                    if (e.currentTarget) {
+                        e.currentTarget.style.transform = '';
+                    }
+                }, 150);
+            }, { passive: true });
+        }
     });
     
-    document.getElementById('font-increase')?.addEventListener('click', () => {
-        adjustFontSize('increase');
-    });
-    
-    document.getElementById('contrast-normal')?.addEventListener('click', () => {
-        setContrast('normal');
-    });
-    
-    document.getElementById('contrast-high')?.addEventListener('click', () => {
-        setContrast('high');
-    });
-    
-    document.getElementById('contrast-invert')?.addEventListener('click', () => {
-        setContrast('invert');
-    });
-    
-    document.getElementById('keyboard-nav')?.addEventListener('click', () => {
-        toggleKeyboardNavigation();
-    });
-    
-    document.getElementById('links-highlight')?.addEventListener('click', () => {
-        toggleLinksHighlight();
-    });
-    
-    document.getElementById('reading-guide')?.addEventListener('click', () => {
-        toggleReadingGuide();
-    });
-    
-    document.getElementById('animations-on')?.addEventListener('click', () => {
-        setAnimations(true);
-    });
-    
-    document.getElementById('animations-off')?.addEventListener('click', () => {
-        setAnimations(false);
-    });
-    
-    document.getElementById('reset-all')?.addEventListener('click', () => {
-        resetAllAccessibilitySettings();
-    });
-    
+    // Reading guide with mobile support
     if (readingGuideLine) {
+        // Mouse support for desktop
         document.addEventListener('mousemove', (e) => {
             if (readingGuideLine.classList.contains('active')) {
                 readingGuideLine.style.top = e.clientY + 'px';
             }
         });
+        
+        // Touch support for mobile
+        document.addEventListener('touchmove', (e) => {
+            if (readingGuideLine.classList.contains('active') && e.touches[0]) {
+                readingGuideLine.style.top = e.touches[0].clientY + 'px';
+            }
+        }, { passive: true });
     }
 }
 
@@ -1240,25 +1325,34 @@ function adjustFontSize(action) {
 }
 
 function setContrast(mode) {
-    const body = document.body;
-    
-    body.classList.remove('high-contrast', 'invert-colors');
-    
-    switch (mode) {
-        case 'high':
-            body.classList.add('high-contrast');
-            break;
-        case 'invert':
-            body.classList.add('invert-colors');
-            break;
-        case 'normal':
-        default:
-            break;
+    try {
+        const body = document.body;
+        
+        if (!body) {
+            console.warn('Document body not available for contrast setting');
+            return;
+        }
+        
+        body.classList.remove('high-contrast', 'invert-colors');
+        
+        switch (mode) {
+            case 'high':
+                body.classList.add('high-contrast');
+                break;
+            case 'invert':
+                body.classList.add('invert-colors');
+                break;
+            case 'normal':
+            default:
+                break;
+        }
+        
+        updateAccessibilityButtonStates();
+        saveAccessibilityPreference('contrast', mode);
+        trackEvent('accessibility_contrast_changed', { mode });
+    } catch (error) {
+        console.error('Error setting contrast mode:', error);
     }
-    
-    updateAccessibilityButtonStates();
-    saveAccessibilityPreference('contrast', mode);
-    trackEvent('accessibility_contrast_changed', { mode });
 }
 
 function toggleKeyboardNavigation() {
@@ -1303,40 +1397,68 @@ function setAnimations(enabled) {
 }
 
 function updateAccessibilityButtonStates() {
-    const body = document.body;
-    
-    document.querySelectorAll('#font-decrease, #font-reset, #font-increase').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    if (body.classList.contains('font-largest')) {
-        document.getElementById('font-increase')?.classList.add('active');
-    } else if (body.classList.contains('font-larger')) {
-        document.getElementById('font-increase')?.classList.add('active');
-    } else if (body.classList.contains('font-large')) {
-        document.getElementById('font-increase')?.classList.add('active');
-    } else {
-        document.getElementById('font-reset')?.classList.add('active');
+    try {
+        const body = document.body;
+        
+        if (!body) {
+            console.warn('Document body not available for button state update');
+            return;
+        }
+        
+        // Update font size buttons
+        document.querySelectorAll('#font-decrease, #font-reset, #font-increase').forEach(btn => {
+            if (btn) btn.classList.remove('active');
+        });
+        
+        if (body.classList.contains('font-largest')) {
+            document.getElementById('font-increase')?.classList.add('active');
+        } else if (body.classList.contains('font-larger')) {
+            document.getElementById('font-increase')?.classList.add('active');
+        } else if (body.classList.contains('font-large')) {
+            document.getElementById('font-increase')?.classList.add('active');
+        } else {
+            document.getElementById('font-reset')?.classList.add('active');
+        }
+        
+        // Update contrast buttons
+        document.querySelectorAll('#contrast-normal, #contrast-high, #contrast-invert').forEach(btn => {
+            if (btn) btn.classList.remove('active');
+        });
+        
+        if (body.classList.contains('high-contrast')) {
+            document.getElementById('contrast-high')?.classList.add('active');
+        } else if (body.classList.contains('invert-colors')) {
+            document.getElementById('contrast-invert')?.classList.add('active');
+        } else {
+            document.getElementById('contrast-normal')?.classList.add('active');
+        }
+        
+        // Update navigation and other buttons
+        const keyboardNavBtn = document.getElementById('keyboard-nav');
+        const linksHighlightBtn = document.getElementById('links-highlight');
+        const readingGuideBtn = document.getElementById('reading-guide');
+        const readingGuideLine = document.getElementById('reading-guide-line');
+        const animationsOnBtn = document.getElementById('animations-on');
+        const animationsOffBtn = document.getElementById('animations-off');
+        
+        if (keyboardNavBtn) {
+            keyboardNavBtn.classList.toggle('active', body.classList.contains('keyboard-navigation'));
+        }
+        if (linksHighlightBtn) {
+            linksHighlightBtn.classList.toggle('active', body.classList.contains('links-highlight'));
+        }
+        if (readingGuideBtn && readingGuideLine) {
+            readingGuideBtn.classList.toggle('active', readingGuideLine.classList.contains('active'));
+        }
+        if (animationsOnBtn) {
+            animationsOnBtn.classList.toggle('active', !body.classList.contains('no-animations'));
+        }
+        if (animationsOffBtn) {
+            animationsOffBtn.classList.toggle('active', body.classList.contains('no-animations'));
+        }
+    } catch (error) {
+        console.error('Error updating accessibility button states:', error);
     }
-    
-    document.querySelectorAll('#contrast-normal, #contrast-high, #contrast-invert').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    if (body.classList.contains('high-contrast')) {
-        document.getElementById('contrast-high')?.classList.add('active');
-    } else if (body.classList.contains('invert-colors')) {
-        document.getElementById('contrast-invert')?.classList.add('active');
-    } else {
-        document.getElementById('contrast-normal')?.classList.add('active');
-    }
-    
-    document.getElementById('keyboard-nav')?.classList.toggle('active', body.classList.contains('keyboard-navigation'));
-    document.getElementById('links-highlight')?.classList.toggle('active', body.classList.contains('links-highlight'));
-    document.getElementById('reading-guide')?.classList.toggle('active', document.getElementById('reading-guide-line')?.classList.contains('active'));
-    
-    document.getElementById('animations-on')?.classList.toggle('active', !body.classList.contains('no-animations'));
-    document.getElementById('animations-off')?.classList.toggle('active', body.classList.contains('no-animations'));
 }
 
 function saveAccessibilityPreference(key, value) {
@@ -1437,7 +1559,10 @@ function initializeDraggableAccessibilityButton(button) {
     document.addEventListener('touchend', handleEnd);
     
     function handleStart(e) {
-        e.preventDefault();
+        // Don't prevent default for touch events to allow normal clicking
+        if (e.type === 'mousedown') {
+            e.preventDefault();
+        }
         
         const clientX = e.clientX || (e.touches && e.touches[0].clientX);
         const clientY = e.clientY || (e.touches && e.touches[0].clientY);
@@ -1449,11 +1574,17 @@ function initializeDraggableAccessibilityButton(button) {
         startLeft = rect.left;
         startTop = rect.top;
         
+        // Shorter timeout for better mobile responsiveness
+        const dragDelay = e.type === 'touchstart' ? 200 : 150;
         clickTimeout = setTimeout(() => {
             isDragging = true;
             button.classList.add('dragging');
             document.body.style.userSelect = 'none';
-        }, 150);
+            // Provide haptic feedback on mobile
+            if ('vibrate' in navigator && e.type === 'touchstart') {
+                navigator.vibrate(50);
+            }
+        }, dragDelay);
     }
     
     function handleMove(e) {
