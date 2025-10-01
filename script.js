@@ -13,7 +13,7 @@ const observerOptions = {
 document.addEventListener('DOMContentLoaded', function() {
     try {
         if (typeof emailjs !== 'undefined') {
-            emailjs.init("O8DVp1sHREaQBWcrX");
+    emailjs.init("O8DVp1sHREaQBWcrX");
         } else {
             console.warn('EmailJS not loaded - contact form will not work');
         }

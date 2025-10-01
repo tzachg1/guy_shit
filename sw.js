@@ -216,7 +216,7 @@ self.addEventListener('push', event => {
     console.log('Service Worker: Push notification received');
     
     const options = {
-        body: event.data ? event.data.text() : 'New message from G.A Strategy',
+        body: event.data ? event.data.text() : 'New message from G.A Strategy Business & Growth',
         icon: '/logo.png',
         badge: '/logo.png',
         vibrate: [200, 100, 200],
@@ -226,7 +226,7 @@ self.addEventListener('push', event => {
     };
     
     event.waitUntil(
-        self.registration.showNotification('G.A Strategy', options)
+        self.registration.showNotification('G.A Strategy Business & Growth', options)
     );
 });
 

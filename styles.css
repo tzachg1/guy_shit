@@ -150,6 +150,19 @@ body {
     word-spacing: 0.1em;
 }
 
+/* Logo text change for tablet and mobile - triggers earlier to prevent overlap */
+@media (max-width: 900px) {
+    .nav-logo .logo-text {
+        font-size: 0;
+    }
+    
+    .nav-logo .logo-text::after {
+        content: "G.A Strategy";
+        font-size: var(--font-size-xl);
+        font-weight: 700;
+    }
+}
+
 @media (max-width: 768px) {
     [dir="rtl"] .nav-menu {
         text-align: right;
@@ -167,7 +180,7 @@ body {
     
     .nav-logo {
         position: absolute;
-        right: var(--spacing-md);
+        right: var(--spacing-xs);
     }
 
     [dir="rtl"] .nav-logo {
@@ -240,7 +253,7 @@ body {
 
 .nav-logo {
     position: absolute;
-    right: var(--spacing-lg);
+    right: var(--spacing-sm);
 }
 
 [dir="rtl"] .nav-logo {
@@ -264,6 +277,9 @@ body {
     gap: var(--spacing-sm);
     font-weight: 700;
     font-size: var(--font-size-xl);
+    white-space: nowrap;
+    overflow: visible;
+    max-width: 400px;
 }
 
 .logo-image {
@@ -452,6 +468,8 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    word-break: break-word;
+    hyphens: auto;
 }
 
 .delay-1 { animation-delay: 0.2s; }
